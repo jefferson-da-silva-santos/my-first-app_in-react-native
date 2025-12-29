@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
   boxMid: {
     width: "100%",
     height: Dimensions.get("window").height / 4,
-    backgroundColor: "blue",
     paddingHorizontal: 37,
   },
   boxBottom: {
@@ -45,13 +44,17 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: 40,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 40,
     marginTop: 10,
     flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: themas.Colors.lightGray,
+    borderColor: themas.Colors.lightGray
   },
   input : {
     height: "100%",
-    width: "100%",
-    backgroundColor: 'red'
+    borderRadius: 40,
+    width: "90%",
+    paddingHorizontal: 5,
   }
 });
