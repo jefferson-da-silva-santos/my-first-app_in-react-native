@@ -1,25 +1,33 @@
 import { useState } from "react";
 import { styles } from "./styles";
-import { View, Text, StatusBar, Image, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, Image, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import Logo from '../../assets/logo.png';
-import { MaterialIcons } from '@expo/vector-icons';
 import { themas } from "../../global/themes";
+import Input from "../../components/Input";
+import { Button } from "../../components/Button";
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  function handleLogin() {
+  async function handleLogin() {
+    if (!email || !password) {
+      return Alert.alert('Preencha todos os campos');
+    }
+
+    setLoading(true);
+
     try {
-      if (!email || !password) {
-        return Alert.alert('Preencha todos os campos');
-      }
-      console.log(email, password);
-            
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      Alert.alert('Login realizado com sucesso!');
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   }
+
 
   return (
     <View style={styles.container}>
@@ -31,35 +39,30 @@ export default function Login() {
 
       <View style={styles.boxMid}>
 
-        <Text style={styles.titleinput}>Endereço de email</Text>
+        <Input
+          label="Endereço de email"
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Endereço de email"
+          icon="email"
+        />
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Endereço de email" />
-          <MaterialIcons color={themas.Colors.gray} name="email" size={24} />
-        </View>
-
-        <Text style={styles.titleinput}>Senha</Text>
-
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Senha" secureTextEntry />
-          <MaterialIcons color={themas.Colors.gray}  name="remove-red-eye" size={24} />
-        </View>
+        <Input
+          label="Senha"
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Senha"
+          secureTextEntry={true}
+          icon="remove-red-eye"
+        />
       </View>
 
       <View style={styles.boxBottom}>
-        <TouchableOpacity
-        onPress={handleLogin} 
-        style={styles.button}>
-          <Text style={styles.textButton}>Entrar</Text>
-        </TouchableOpacity>
+        <Button
+          handleLogin={handleLogin}
+          loading={loading}
+          textButton="Entrar"
+        />
       <Text style={styles.textBottom}>Não tem conta?</Text>
       </View>
     </View>
