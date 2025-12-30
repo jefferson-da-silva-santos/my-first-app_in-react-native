@@ -5,11 +5,13 @@ import Logo from '../../assets/logo.png';
 import { themas } from "../../global/themes";
 import Input from "../../components/Input";
 import { Button } from "../../components/Button";
+import {useNavigation} from "@react-navigation/native";
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigation = useNavigation<any>();
 
   async function handleLogin() {
     if (!email || !password) {
@@ -18,9 +20,11 @@ export default function Login() {
 
     setLoading(true);
 
-    try {
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
       Alert.alert('Login realizado com sucesso!');
+      navigation.navigate('BottomRoutes');
+
     } catch (error) {
       console.log(error);
     } finally {

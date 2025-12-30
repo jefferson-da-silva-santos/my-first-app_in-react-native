@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: themas.Colors.lightGray,
     borderColor: themas.Colors.lightGray,
+    paddingRight: 10,
   },
   input: {
     flex: 1,

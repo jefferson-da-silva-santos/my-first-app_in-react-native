@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/pages/login';
+import 'react-native-gesture-handler';
+import Routes from './src/routes/index.routes';
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
-    <View style={{ flex: 1 }}>
-      <Login />
-    </View>
+    <NavigationContainer>
+      <Routes />
+    </NavigationContainer>
   );
 }
